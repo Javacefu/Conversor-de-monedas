@@ -29,11 +29,12 @@ public class ConversorMoneda {
         System.out.println("Ingrese el tipo de moneda de destino:");
         monedaDestino = scanner.nextLine();
 
-        //      simulacion de tasa de cambio
+        //      simulacion de tasa de cambio (Provisional)
         double tasaDeCambio = 900;
         double valorConvertido = valorIngresado * tasaDeCambio;
 
-        System.out.println("Resultado: " + monedaDestino.toUpperCase() + " " + valorConvertido);
+        System.out.printf("Resultado: %s %.2f%n", monedaDestino.toUpperCase(), valorConvertido);
+
         scanner.close();
     }
 }

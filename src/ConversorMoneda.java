@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.util.Scanner;
 
 public class ConversorMoneda {
@@ -35,6 +37,18 @@ public class ConversorMoneda {
 
         System.out.printf("Resultado: %s %.2f%n", monedaDestino.toUpperCase(), valorConvertido);
 
+
         scanner.close();
+
+        RespuestaDeCambio datos = ApiClient.obtenerTasasCambio(monedaOrigen);
+
+        if (datos != null && datos.getConversion_rates().containsKey(monedaDestino)) {
+            double tasa = datos.getConversion_rates().get(monedaDestino);
+            double resultado = valorIngresado * tasa;
+            System.out.println("Resultado: " + resultado);
+        } else {
+            System.out.println("No se pudo obtener la tasa de cambio.");
+        }
+
     }
 }

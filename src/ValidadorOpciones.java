@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -17,6 +18,7 @@ public class ValidadorOpciones {
                     // convertir moneda
                     case 2:
                         System.out.println("Elegiste opcion 2");
+                        Api.main();
                         break;
                     // Historial de conversiones
                     case 3:
@@ -30,7 +32,7 @@ public class ValidadorOpciones {
                     default:
                         System.out.println("Elija una opcion valida entre el 1 y el 4");
                 }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException | IOException | InterruptedException e) {
                 System.out.println("Error: Ha ingresado Texto");
                 scanner.nextLine();
             }

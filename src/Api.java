@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Api {
@@ -28,7 +29,7 @@ public class Api {
         // Crear variable json con la informacion solicitada
         String json = response.body();
         // Imprimir respuesta (Prueba de codigo hasta aqui)
-//        System.out.println(json);
+        System.out.println(json);
         // Creacion de objeto gson
         Gson gson = new Gson();
         // transformar datos de la solicitud
@@ -36,6 +37,7 @@ public class Api {
         conversionApi.getRespuesta();
         conversionApi.getTipoMoneda();
         conversionApi.getMonedaYValor();
+
 
     }
 }

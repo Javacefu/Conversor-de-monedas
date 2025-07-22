@@ -9,7 +9,7 @@ public class ConversionApi {
     private String tipoMoneda;
     @SerializedName("conversion_rates")
     private Map <String, Double> monedaYValor;
-
+    
     public String getRespuesta() {
         System.out.println(respuesta);
         return respuesta;

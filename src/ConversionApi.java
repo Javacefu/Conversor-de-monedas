@@ -11,17 +11,14 @@ public class ConversionApi {
     private Map <String, Double> monedaYValor;
     
     public String getRespuesta() {
-        System.out.println(respuesta);
         return respuesta;
     }
 
     public String getTipoMoneda() {
-        System.out.println(tipoMoneda);
         return tipoMoneda;
     }
 
     public Map<String, Double> getMonedaYValor() {
-        System.out.println(monedaYValor);
         return monedaYValor;
     }
 }

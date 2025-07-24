@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class ValidadorOpciones {
     public static int opciones(Scanner scanner) {
+
         int opcion = 0;
         boolean continuar = true;
 
@@ -14,15 +15,17 @@ public class ValidadorOpciones {
                     // Ver tabla
                     case 1:
                         System.out.println("Elegiste opcion 1");
+                        Tabla.mostrarTabla();
                         break;
                     // convertir moneda
                     case 2:
                         System.out.println("Elegiste opcion 2");
-                        Api.main();
+                        Api.apiResponse();
                         break;
                     // Historial de conversiones
                     case 3:
                         System.out.println("Elegiste opcion 3");
+                        HistorialDeConversiones.Historial();
                         break;
                     // Salir
                     case 4:
@@ -36,6 +39,7 @@ public class ValidadorOpciones {
                 System.out.println("Error: Ha ingresado Texto");
                 scanner.nextLine();
             }
+
         }
         return opcion;
     }

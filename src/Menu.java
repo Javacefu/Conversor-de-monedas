@@ -1,6 +1,5 @@
 public class Menu {
     public static void mostrarMenu() {
-
 //        Menu
         System.out.println("""
                 **************************************************
@@ -13,9 +12,5 @@ public class Menu {
                 
                 **************************************************
                 """);
-
-//        Ver tabla de monedas
-
-
     }
 }

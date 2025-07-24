@@ -95,10 +95,10 @@ public class Api {
                         continuar = false;
                         break;
                     default:
-                        System.out.println("Ingresar una opción valida");
+                        System.out.println("Ingresar una opción valida 1 o 2");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Entrada inválida. Debe ingresar un número.");
+                System.out.println("Entrada inválida. Debe ingresar una opcion (1 o 2).");
             }
 
 

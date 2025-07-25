@@ -13,7 +13,6 @@ public class Api {
         String monedaAConvertir;
         Double valorSolicitado;
         Double valorConvertido;
-        String apiKey = "d52d1ef4880319015feb94f9"; // Clave API
 
         Scanner scanner = new Scanner(System.in);
 
@@ -42,25 +41,9 @@ public class Api {
             }
         }
 
-        // Enlace concatenado con la clave y respuesta de usuario
-        String endpoint = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + monedaAConsultar;
+        // Ejecucion de la API
+        ConversionApi data = ApiCliente.obtenerConversion(monedaAConsultar);
 
-        // Conexion con el servidor de la API
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endpoint))
-                .build();
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
-
-        // Crear variable json con la informacion solicitada
-        String json = response.body();
-
-        // Creacion de objeto gson
-        Gson gson = new Gson();
-
-        // transformar datos de la solicitud
-        ConversionApi data = gson.fromJson(json, ConversionApi.class);
         System.out.println("1- Resultado de consulta: " + data.getRespuesta());
         System.out.println("2- Moneda consultada: " + data.getTipoMoneda());
         System.out.println("3- Tipo de cambio: " + monedaAConvertir + " " + data

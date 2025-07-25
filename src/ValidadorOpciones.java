@@ -14,7 +14,6 @@ public class ValidadorOpciones {
                 switch (opcion) {
                     // Ver tabla
                     case 1:
-                        System.out.println("Elegiste opcion 1");
                         Tabla.mostrarTabla();
                         break;
                     // convertir moneda

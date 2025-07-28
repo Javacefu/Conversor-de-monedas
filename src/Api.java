@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Api {
     public static void apiResponse() throws IOException, InterruptedException {
         String monedaAConsultar;
-        String monedaAConvertir = "";
+        String monedaAConvertir;
         Double valorSolicitado;
         Double valorConvertido;
 

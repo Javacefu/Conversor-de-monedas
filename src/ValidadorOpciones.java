@@ -20,10 +20,8 @@ public class ValidadorOpciones {
                     case 2:
                         Api.apiResponse();
                         break;
-                    // Historial de conversiones
                     case 3:
                         System.out.println("Elegiste opcion 3");
-                        HistorialDeConversiones.Historial();
                         break;
                     // Salir
                     case 4:

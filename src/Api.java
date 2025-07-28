@@ -1,4 +1,3 @@
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -7,7 +6,7 @@ public class Api {
         String monedaAConsultar;
         String monedaAConvertir;
         Double valorSolicitado;
-        Double valorConvertido;
+        Double valorConvertido = 0.0;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -54,15 +53,11 @@ public class Api {
                 // Ejecucion de la API
                 ConversionApi data = ApiCliente.obtenerConversion(monedaAConsultar);
 
-                System.out.printf("* Monto consultado: %,.2f %s%n", valorSolicitado, data.getTipoMoneda());
-                System.out.printf("* Tipo de cambio: 1 %s = %,.2f %s%n", monedaAConsultar, data.getMonedaYValor()
-                        .get(monedaAConvertir), monedaAConvertir);
-                valorConvertido = data.getMonedaYValor().get(monedaAConvertir) * valorSolicitado;
-                System.out.printf("* Valor convertido: %,.2f %s%n", valorConvertido, monedaAConvertir);
-
-                FileWriter escritura = new FileWriter("Consultas_monedas.json");
-                escritura.write(String.valueOf(valorConvertido));
-                escritura.close();
+                //Mensaje de los valores solicitados y convertidos
+                data.resultados(monedaAConsultar,
+                        monedaAConvertir,
+                        valorSolicitado,
+                        valorConvertido);
 
             } catch (NullPointerException e) {
                 System.out.println("Error de ingreso en tipo de moneda: " + e.getCause());

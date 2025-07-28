@@ -16,9 +16,11 @@ public class Api {
 
         Scanner scanner = new Scanner(System.in);
 
-//        PARA EL INGRESO DE MONEDAS A CONSULTAR Y CONVERTIR SE DEBE VER LA OPCION DE INGRESAR EXCEPCIONES
-//        PARA VALORES QUE NO SEAN LOS QUE ESTAN CONTENIDOS EN LA TABLA O SEAN DE OTRO FORMATO COMO NUMERO
-//        LINEAS 24:30
+        boolean continuar = true;
+
+        while (continuar) {
+            try {
+
 
         System.out.println("Ingresar tipo de moneda a consultar:");
         // Tipo de moneda indicada por el usuario

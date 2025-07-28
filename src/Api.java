@@ -1,16 +1,11 @@
-import com.google.gson.Gson;
-
+import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 public class Api {
     public static void apiResponse() throws IOException, InterruptedException {
         String monedaAConsultar;
-        String monedaAConvertir;
+        String monedaAConvertir = "";
         Double valorSolicitado;
         Double valorConvertido;
 
@@ -22,71 +17,97 @@ public class Api {
             try {
 
 
-        System.out.println("Ingresar tipo de moneda a consultar:");
-        // Tipo de moneda indicada por el usuario
-        monedaAConsultar = scanner.nextLine().toUpperCase();
-
-        System.out.println("Ingrese tipo de moneda a la cual desea convertir:");
-        // Tipo de moneda a la cual quiere convertir
-        monedaAConvertir = scanner.nextLine().toUpperCase();
-
-
-        // Validar que el valor a ingresar sea de tipo Double
-        while (true) {
-            System.out.println("Ingrese el valor que desea convertir:");
-            if (scanner.hasNextDouble()) {
-                valorSolicitado = scanner.nextDouble();
-                break;
-            } else {
-                System.out.println("Error: Debe ingresar un número. Intente de nuevo.");
-                scanner.next(); // Limpiar entrada no valida
-            }
-        }
-
-        // Ejecucion de la API
-        ConversionApi data = ApiCliente.obtenerConversion(monedaAConsultar);
-
-        System.out.println("1- Resultado de consulta: " + data.getRespuesta());
-        System.out.println("2- Moneda consultada: " + data.getTipoMoneda());
-        System.out.println("3- Tipo de cambio: " + monedaAConvertir + " " + data
-                .getMonedaYValor().get(monedaAConvertir));
-        valorConvertido = data.getMonedaYValor().get(monedaAConvertir) * valorSolicitado;
-        System.out.println("4- El valor convertido es: " + monedaAConvertir + " " + valorConvertido);
-
-        int opcion;
-        boolean continuar = true;
-        scanner.nextLine();
-
-        System.out.println("""
-                ***************************************
-                ¿Desea realizar otra consulta?
-                
-                1) Sí.
-                2) Volver al menu principal.
-                
-                ***************************************                
-                """);
-
-        while (continuar) {
-            try {
-                opcion = Integer.parseInt(scanner.nextLine());
-
-                switch (opcion) {
-                    case 1:
-                        Api.apiResponse();
-                        break;
-                    case 2:
-                        Menu.mostrarMenu();
-                        continuar = false;
-                        break;
-                    default:
-                        System.out.println("Ingresar una opción valida 1 o 2");
+                System.out.println("Ingresar tipo de moneda a consultar:");
+                // Tipo de moneda indicada por el usuario
+                monedaAConsultar = scanner.nextLine().toUpperCase();
+                // Validar código de moneda
+                if (!monedaAConsultar.matches("[A-Z]{3}")) {
+                    System.out.println("Código de moneda inválido. Debe tener 3 letras, por ejemplo USD o CLP.");
+                    continue;
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Entrada inválida. Debe ingresar una opcion (1 o 2).");
+
+                System.out.println("Ingrese tipo de moneda a la cual desea convertir:");
+
+                // Tipo de moneda a la cual quiere convertir
+                monedaAConvertir = scanner.nextLine().toUpperCase();
+                // Validar código de moneda
+                if (!monedaAConvertir.matches("[A-Z]{3}")) {
+                    System.out.println("Código de moneda inválido. Debe tener 3 letras, por ejemplo USD o CLP.");
+                    System.out.println("Intente nuevamente");
+                    continue;
+                }
+
+
+                // Validar que el valor a ingresar sea de tipo Double
+                System.out.println("Ingrese el valor que desea convertir:");
+                while (true) {
+                    if (scanner.hasNextDouble()) {
+                        valorSolicitado = scanner.nextDouble();
+                        break;
+                    } else {
+                        System.out.println("Error: Debe ingresar un número. Intente de nuevo.");
+                        scanner.next(); // Limpiar entrada no valida
+                    }
+                }
+
+
+                // Ejecucion de la API
+                ConversionApi data = ApiCliente.obtenerConversion(monedaAConsultar);
+
+                System.out.printf("* Monto consultado: %,.2f %s%n", valorSolicitado, data.getTipoMoneda());
+                System.out.printf("* Tipo de cambio: 1 %s = %,.2f %s%n", monedaAConsultar, data.getMonedaYValor()
+                        .get(monedaAConvertir), monedaAConvertir);
+                valorConvertido = data.getMonedaYValor().get(monedaAConvertir) * valorSolicitado;
+                System.out.printf("* Valor convertido: %,.2f %s%n", valorConvertido, monedaAConvertir);
+
+                FileWriter escritura = new FileWriter("Consultas_monedas.json");
+                escritura.write(String.valueOf(valorConvertido));
+                escritura.close();
+
+            } catch (NullPointerException e) {
+                System.out.println("Error de ingreso en tipo de moneda: " + e.getCause());
+
             }
 
+            int opcion;
+            scanner.nextLine();
+            boolean opcionValida = true;
 
+            while (opcionValida) {
+
+                System.out.println("""
+                        
+                        ***************************************
+                        ¿Desea realizar otra consulta?
+                        
+                        1) Sí.
+                        2) Volver al menu principal.
+                        
+                        ***************************************
+                        """);
+
+                try {
+                    opcion = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (opcion) {
+                        case 1:
+                            opcionValida = false;
+                            break;
+                        case 2:
+                            continuar = false;
+                            opcionValida = false;
+                            Menu.mostrarMenu();
+                            break;
+                        default:
+                            System.out.println("Ingresar una opción válida: 1 o 2");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Entrada inválida: " + e.getMessage());
+                    scanner.nextLine();
+                }
+
+            }
         }
     }
 }

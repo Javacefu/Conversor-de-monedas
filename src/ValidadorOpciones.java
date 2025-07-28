@@ -18,7 +18,6 @@ public class ValidadorOpciones {
                         break;
                     // convertir moneda
                     case 2:
-                        System.out.println("Elegiste opcion 2");
                         Api.apiResponse();
                         break;
                     // Historial de conversiones
@@ -28,14 +27,14 @@ public class ValidadorOpciones {
                         break;
                     // Salir
                     case 4:
-                        System.out.println("Saliste del menu");
+                        System.out.println("Finalizando conversor de monedas, hasta luego.");
                         continuar = false;
                         break;
                     default:
                         System.out.println("Elija una opcion valida entre el 1 y el 4");
                 }
             } catch (InputMismatchException | IOException | InterruptedException e) {
-                System.out.println("Error: Ha ingresado Texto");
+                System.out.println("Error: Ha ingresado Texto: " + e.getMessage());
                 scanner.nextLine();
             }
 

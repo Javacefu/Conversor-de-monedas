@@ -22,6 +22,7 @@ public class ValidadorOpciones {
                         break;
                     case 3:
                         System.out.println("Elegiste opcion 3");
+                        HistorialConversiones.mostrarHistorial();
                         break;
                     // Salir
                     case 4:

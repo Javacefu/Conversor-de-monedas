@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistorialConversiones {
-    //    historial es una Lista
+//    historial es una Lista
 //    iteracion mira el tamaño de la lista y se suma 1 mas
 //    registro deriva de la Clase RegistroConversion y utiliza las variables
 //    LocalDateTime.now() entrega la fecha y hora actuales

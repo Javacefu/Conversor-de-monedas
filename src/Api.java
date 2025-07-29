@@ -59,10 +59,19 @@ public class Api {
                         valorSolicitado,
                         valorConvertido);
 
+
+                HistorialConversiones.agregarRegistro(monedaAConsultar,
+                        valorSolicitado,
+                        monedaAConvertir,
+                        valorConvertido);
+
+                //HistorialConversiones.agregarRegistro(monedaAConsultar, valorSolicitado, monedaAConvertir, valorConvertido);
+
+
             } catch (NullPointerException e) {
                 System.out.println("Error de ingreso en tipo de moneda: " + e.getCause());
-
             }
+
 
             int opcion;
             scanner.nextLine();

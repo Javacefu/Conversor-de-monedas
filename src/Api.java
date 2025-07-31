@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Api {
@@ -15,7 +14,6 @@ public class Api {
 
         while (continuar) {
             try {
-
 
                 System.out.println("Ingresar tipo de moneda a consultar:");
                 // Tipo de moneda indicada por el usuario
@@ -37,7 +35,6 @@ public class Api {
                     continue;
                 }
 
-
                 // Validar que el valor a ingresar sea de tipo Double
                 System.out.println("Ingrese el valor que desea convertir:");
                 while (true) {
@@ -49,7 +46,6 @@ public class Api {
                         scanner.next(); // Limpiar entrada no valida
                     }
                 }
-
 
                 // Ejecucion de la API
                 ConversionApi data = ApiCliente.obtenerConversion(monedaAConsultar);
@@ -69,7 +65,6 @@ public class Api {
             } catch (NullPointerException e) {
                 System.out.println("Error de ingreso en tipo de moneda: " + e.getCause());
             }
-
 
             int opcion;
             scanner.nextLine();

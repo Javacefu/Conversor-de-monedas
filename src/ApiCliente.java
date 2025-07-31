@@ -8,8 +8,8 @@ import java.net.http.HttpResponse;
 
 public class ApiCliente {
     public static ConversionApi obtenerConversion(String baseMoneda) throws IOException, InterruptedException {
-        String apiKey = "d52d1ef4880319015feb94f9"; // Clave API
-        String endpoint = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/"+baseMoneda; // Enlace completo
+        String apiKey = "TU_CLAVE_API_AQUÍ"; // Reemplazar por tu Clave de la API
+        String endpoint = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + baseMoneda; // Enlace completo
 
         // Conexion con el servidor de la API
         HttpClient client = HttpClient.newHttpClient();

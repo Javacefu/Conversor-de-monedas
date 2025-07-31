@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 
-public class RegistroConversion {
+public class RegistroConversion extends ConversionApi{
     private int iteracion;
     private String monedaBase;
     private double monto;
@@ -17,6 +17,25 @@ public class RegistroConversion {
         this.monedaConvertida = monedaConvertida;
         this.convertido = convertido;
         this.fechaHora = fechaHora;
+    }
+
+    public int getIteracion() {
+        return iteracion;
+    }
+    public String getMonedaBase() {
+        return monedaBase;
+    }
+    public double getMonto() {
+        return monto;
+    }
+    public String getMonedaConvertida() {
+        return monedaConvertida;
+    }
+    public double getConvertido() {
+        return convertido;
+    }
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
     }
 
     @Override

@@ -60,10 +60,6 @@ public class Api {
                         valorConvertido);
 
 
-                HistorialConversiones.agregarRegistro(monedaAConsultar,
-                        valorSolicitado,
-                        monedaAConvertir,
-                        valorConvertido);
 
                 //HistorialConversiones.agregarRegistro(monedaAConsultar, valorSolicitado, monedaAConvertir, valorConvertido);
 

@@ -1,48 +1,31 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class RegistroConversion extends ConversionApi{
-    private int iteracion;
-    private String monedaBase;
-    private double monto;
-    private String monedaConvertida;
-    private double convertido;
-    private LocalDateTime fechaHora;
+public class RegistroConversion {
+    private String monedaOrigen;
+    private String monedaDestino;
+    private double valorIngresado;
+    private double valorConvertido;
+    private LocalDateTime fechaYHora;
 
-    public RegistroConversion(int iteracion, String monedaBase,
-                              double monto, String monedaConvertida,
-                              double convertido, LocalDateTime fechaHora) {
-        this.iteracion = iteracion;
-        this.monedaBase = monedaBase;
-        this.monto = monto;
-        this.monedaConvertida = monedaConvertida;
-        this.convertido = convertido;
-        this.fechaHora = fechaHora;
+    public RegistroConversion(String monedaOrigen, String monedaDestino, double valorIngresado, double valorConvertido) {
+        this.monedaOrigen = monedaOrigen;
+        this.monedaDestino = monedaDestino;
+        this.valorIngresado = valorIngresado;
+        this.valorConvertido = valorConvertido;
+        this.fechaYHora = LocalDateTime.now();
     }
 
-    public int getIteracion() {
-        return iteracion;
-    }
-    public String getMonedaBase() {
-        return monedaBase;
-    }
-    public double getMonto() {
-        return monto;
-    }
-    public String getMonedaConvertida() {
-        return monedaConvertida;
-    }
-    public double getConvertido() {
-        return convertido;
-    }
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
-    }
-
-    @Override
-    public String toString() {
-        return "Iteración: " + iteracion + ", " + monedaBase + " " +
-                monto + " → " + monedaConvertida + " " + convertido +
-                " | Fecha: " + fechaHora;
+    public String formatoTabla(int number){
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy - HH:mm:ss");
+        return String.format("%3d | %,16.2f | %13s | → | %,16.2f | %14s | %s",
+                number,
+                valorIngresado,
+                monedaOrigen,
+                valorConvertido,
+                monedaDestino,
+                fechaYHora.format(formato)
+        );
     }
 
 }

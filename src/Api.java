@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Api {
@@ -53,16 +54,17 @@ public class Api {
                 // Ejecucion de la API
                 ConversionApi data = ApiCliente.obtenerConversion(monedaAConsultar);
 
+                // Resultado de valor a consultar * tipo de cambio
+                valorConvertido = valorSolicitado * data.getMonedaYValor().get(monedaAConvertir);
+
                 //Mensaje de los valores solicitados y convertidos
-                data.resultados(monedaAConsultar,
-                        monedaAConvertir,
-                        valorSolicitado,
-                        valorConvertido);
+                System.out.printf("1- Monto consultado: %,.2f %s%n", valorSolicitado, monedaAConsultar);
+                System.out.printf("2- Tipo de cambio: 1 %s = %,.2f %s%n", monedaAConsultar,
+                        data.getMonedaYValor().get(monedaAConvertir), monedaAConvertir);
+                System.out.printf("3- Valor convertido: %,.2f %s%n", valorConvertido, monedaAConvertir);
 
-
-
-                //HistorialConversiones.agregarRegistro(monedaAConsultar, valorSolicitado, monedaAConvertir, valorConvertido);
-
+                RegistroConversion registro = new RegistroConversion(monedaAConsultar, monedaAConvertir, valorSolicitado, valorConvertido);
+                HistorialConversiones.agregarRegistro(registro);
 
             } catch (NullPointerException e) {
                 System.out.println("Error de ingreso en tipo de moneda: " + e.getCause());

@@ -1,35 +1,23 @@
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HistorialConversiones {
-//    historial es una Lista
-//    iteracion mira el tamaño de la lista y se suma 1 mas
-//    registro deriva de la Clase RegistroConversion y utiliza las variables
-//    LocalDateTime.now() entrega la fecha y hora actuales
-//    historial.add(registro) se agrega la informacion de registro a la lista de historial
-
     private static List<RegistroConversion> historial = new ArrayList<>();
 
-    public static void agregarRegistro (String monedaBase,      // Moneda solicitada
-                                        double monto,           // Monto solicitado
-                                        String monedaDestino,   // Moneda que se desea
-                                        double convertido) {    // Valor convertido
-        int iteracion = historial.size() + 1;
-        RegistroConversion registro = new RegistroConversion(iteracion, monedaBase, monto, monedaDestino,
-                convertido, LocalDateTime.now());
+    public static void agregarRegistro(RegistroConversion registro) {
         historial.add(registro);
     }
 
     public static void mostrarHistorial() {
-        for (RegistroConversion r : historial) {
-            System.out.println(r);
+        if (historial.isEmpty()) {
+            System.out.println("No hay conversiones registradas.");
+        } else {
+            System.out.println("\n--- Historial de Conversiones ---");
+            System.out.println(" Nº | Valor Consultado | Moneda Origen | → | Valor Resultante | Moneda Destino | Fecha y Hora");
+            System.out.println("----|------------------|---------------|---|------------------|----------------|---------------------");
+            for (int i = 0; i < historial.size(); i++) {
+                System.out.println(historial.get(i).formatoTabla(i+1));
+            }
         }
     }
-
-    //    Getter de historial
-    public static List<RegistroConversion> getHistorial() {
-        return historial;
-    }
-
 }

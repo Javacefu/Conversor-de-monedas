@@ -21,8 +21,15 @@ public class ValidadorOpciones {
                         Api.apiResponse();
                         break;
                     case 3:
-                        System.out.println("Elegiste opcion 3");
                         HistorialConversiones.mostrarHistorial();
+                        try {
+                            System.out.println("\nRedirigiendo al menú en 3 segundos\n");
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            System.out.println("La pausa fue interrumpida.");
+                        }
+                        Menu.mostrarMenu();
                         break;
                     // Salir
                     case 4:
